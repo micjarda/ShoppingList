@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectCategory,
   selectData,
+  selectUser,
   selectUsers,
-  setCategory,
-} from "../../features/appcontextSlice";
+  setData,
+} from "../../../features/appcontextSlice";
 // Chakra
 import {
   Table,
@@ -20,34 +21,55 @@ import {
 import Row from "./components/row";
 
 const TableOfLists = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const users: any = useSelector(selectUsers);
+  const user: any = useSelector(selectUser);
   const category = useSelector(selectCategory);
   const data: any = useSelector(selectData);
 
   let rowsdata: any[] = [];
   Object.keys(data).forEach(function (key, index) {
-    if(category === "all") {
+    const pushdata = () => {
+      const id = key;
       const profilepic = users[data[key]?.owner]?.profilepic;
       const name = data[key]?.name;
       const attribute = data[key]?.category;
-      rowsdata[index] = [profilepic, name, attribute];
-    }
-    if(category !== "all" && category === data[key]?.category) {
-      const profilepic = users[data[key]?.owner]?.profilepic;
-      const name = data[key]?.name;
-      const attribute = data[key]?.category;
-      rowsdata[index] = [profilepic, name, attribute];
+      rowsdata[index] = [id, profilepic, name, attribute];
+    };
+    if(data[key]?.hosts.includes(user)) {
+      if (category === "all") {
+        pushdata();
+      }
+      if (category !== "all" && category === data[key]?.category) {
+        pushdata();
+      }
     }
   });
+  const goToList = (id: string) => {
+    window.location.pathname = `/${id}`;
+  };
+
+  const deleteList = (id: string) => {
+    let newdata: { [key: string]: any } = {};
+    Object.keys(data).forEach(function (key: string) {
+      if (key !== id) {
+        newdata[key] = data[key];
+      }
+    });
+    dispatch(setData(newdata));
+  };
 
   const rows = rowsdata.map((row) => (
     <Row
-      profilepic={row[0]}
-      nameoflist={row[1]}
-      attribute={row[2]}
+      key={row}
+      id={row[0]}
+      profilepic={row[1]}
+      nameoflist={row[2]}
+      attribute={row[3]}
+      searchcallback={goToList}
+      deletecallback={deleteList}
     />
-  ))
+  ));
 
   return (
     <TableContainer>
@@ -60,9 +82,7 @@ const TableOfLists = () => {
             <Th>buttons</Th>
           </Tr>
         </Thead>
-        <Tbody>
-          {rows}
-        </Tbody>
+        <Tbody>{rows}</Tbody>
         <Tfoot></Tfoot>
       </Table>
     </TableContainer>

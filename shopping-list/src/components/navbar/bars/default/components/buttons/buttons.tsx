@@ -11,7 +11,7 @@ const nButtons = () => {
     [
       true,
       <Button
-        onClick={() => (window.location.pathname = "/upload")}
+        onClick={() => (window.location.pathname = "/create")}
         variant={"solid"}
         colorScheme={"teal"}
         size={"sm"}

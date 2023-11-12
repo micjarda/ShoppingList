@@ -1,5 +1,5 @@
-import Categories from "../components/categories/categories";
-import List from "./list";
+import Categories from "../components/mainview/categories/categories";
+import TableOfLists from "../components/mainview/listoflists/table";
 import Navbar from "../components/navbar/navbar";
 
 import { Grid, GridItem, Box } from "@chakra-ui/react";
@@ -19,7 +19,7 @@ const Mainview = () => {
           <Navbar />
         </GridItem>
         <GridItem area={"list"}>
-          <List />
+          <TableOfLists />
         </GridItem>
         <GridItem pl="3" area={"category"}>
           <Categories />

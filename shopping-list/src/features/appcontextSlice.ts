@@ -5,6 +5,7 @@ interface IModeContext {
   users: object;
   data: object;
   selectedCategory: string;
+  currentList: object;
   currentUser: string;
 }
 
@@ -32,7 +33,7 @@ const appContext = createSlice({
       "001": {
         owner: "01",
         name: "Jídlo",
-        hosts: ["Katka", "Rostislav"],
+        hosts: ["01", "02", "03"],
         items: [
           ["Jablko", false],
           ["Banány", false],
@@ -44,7 +45,7 @@ const appContext = createSlice({
       "002": {
         owner: "02",
         name: "Oblečení",
-        hosts: ["Rostislav"],
+        hosts: ["03", "01"],
         items: [
           ["Boty", false],
           ["Bunda", false],
@@ -56,7 +57,7 @@ const appContext = createSlice({
       "003": {
         owner: "03",
         name: "Nářadí",
-        hosts: ["Rostislav"],
+        hosts: ["03"],
         items: [
           ["Boty", false],
           ["Bunda", false],
@@ -67,6 +68,10 @@ const appContext = createSlice({
       },
     },
     selectedCategory: "all",
+    currentList: {
+      id: "",
+      hosts: [],
+    },
     currentUser: "01",
   } as IModeContext,
   reducers: {
@@ -75,6 +80,9 @@ const appContext = createSlice({
     },
     setCategory: (state, action) => {
       state.selectedCategory = action.payload;
+    },
+    setCurrentList: (state, action) => {
+      state.currentList = action.payload;
     },
     setUser: (state, action) => {
       state.currentUser = action.payload;
@@ -86,7 +94,10 @@ export const selectUsers = (state: RootState) => state.appcontext.users;
 export const selectData = (state: RootState) => state.appcontext.data;
 export const selectCategory = (state: RootState) =>
   state.appcontext.selectedCategory;
+export const selectCurrentList = (state: RootState) =>
+  state.appcontext.currentList;
 export const selectUser = (state: RootState) => state.appcontext.currentUser;
 
-export const { setData, setCategory, setUser } = appContext.actions;
+export const { setData, setCategory, setCurrentList, setUser } =
+  appContext.actions;
 export default appContext.reducer;

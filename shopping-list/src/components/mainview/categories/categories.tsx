@@ -4,7 +4,7 @@ import {
   selectCategory,
   selectData,
   setCategory,
-} from "../../features/appcontextSlice";
+} from "../../../features/appcontextSlice";
 // Chakra
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
 
@@ -14,13 +14,12 @@ const Categories = () => {
   const data: any = useSelector(selectData);
 
   let buttons: any[] = [];
-  let defaultChecked: string = "1";
+  let defaultChecked: number = category === "all" ? -1 : 1;
   Object.keys(data).forEach(function (key, index) {
-    if (data[key]?.category === category)
-      defaultChecked = index.toLocaleString();
+    if (data[key]?.category === category) defaultChecked = index;
     buttons.push(
       <Radio
-        key={index}
+        key={index + 1}
         value={index.toString()}
         onChange={() => {
           dispatch(setCategory(data[key]?.category));
@@ -33,18 +32,19 @@ const Categories = () => {
 
   return (
     <>
-      <RadioGroup defaultValue={defaultChecked}>
+      <h2>Categories</h2>
+      <RadioGroup defaultValue={defaultChecked.toString()}>
         <Stack>
-        <Radio
-          key={-1}
-          value={"all"}
-          onChange={() => {
-            dispatch(setCategory("all"));
-          }}
-        >
-        All
-        </Radio>,
-          {buttons}
+          <Radio
+            key={0}
+            value={"all"}
+            onChange={() => {
+              dispatch(setCategory("all"));
+            }}
+          >
+            All
+          </Radio>
+          ,{buttons}
         </Stack>
       </RadioGroup>
     </>
