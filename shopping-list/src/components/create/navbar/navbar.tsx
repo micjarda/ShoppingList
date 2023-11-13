@@ -8,12 +8,7 @@
 // } from "../features/appcontextSlice";
 
 import { ArrowLeftIcon } from "@chakra-ui/icons";
-import { IconButton, Tag, Wrap, WrapItem } from "@chakra-ui/react";
-// Ikony
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShareNodes, faTrash } from "@fortawesome/free-solid-svg-icons";
-const SHARE = <FontAwesomeIcon icon={faShareNodes} />;
-const TRASH = <FontAwesomeIcon icon={faTrash} />;
+import { IconButton, Wrap, WrapItem } from "@chakra-ui/react";
 
 const Navbar = () => {
   return (

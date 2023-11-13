@@ -1,10 +1,7 @@
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectCategory,
-  selectUsers,
   selectData,
-  setCategory,
   selectUser,
   setData,
 } from "../../../features/appcontextSlice";
