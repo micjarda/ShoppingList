@@ -43,9 +43,6 @@ const TableOfLists = () => {
       }
     }
   });
-  const goToList = (id: string) => {
-    window.location.pathname = `/${id}`;
-  };
 
   const rows = rowsdata.map((row) => (
     <Row
@@ -54,7 +51,6 @@ const TableOfLists = () => {
       profilepic={row[1]}
       nameoflist={row[2]}
       attribute={row[3]}
-      searchcallback={goToList}
     />
   ));
 

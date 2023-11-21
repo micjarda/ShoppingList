@@ -16,7 +16,6 @@ interface IParmasType {
   profilepic: string;
   nameoflist: string;
   attribute: string;
-  searchcallback: Function;
 }
 
 const Row: React.FC<IParmasType> = ({
@@ -24,8 +23,8 @@ const Row: React.FC<IParmasType> = ({
   profilepic,
   nameoflist,
   attribute,
-  searchcallback,
 }) => {
+
   return (
     <Tr>
       <Td>
@@ -40,7 +39,7 @@ const Row: React.FC<IParmasType> = ({
       <Td>
         <Stack spacing={4} direction="row" align="center">
           <IconButton
-            onClick={() => searchcallback(id)}
+            onClick={() => window.location.pathname = `/${id}`}
             aria-label="Search database"
             icon={<SearchIcon />}
           />
