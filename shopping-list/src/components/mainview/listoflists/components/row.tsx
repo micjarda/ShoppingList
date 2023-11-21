@@ -1,4 +1,4 @@
-import { SearchIcon, DeleteIcon } from "@chakra-ui/icons";
+import { SearchIcon } from "@chakra-ui/icons";
 
 import { Tr, Td } from "@chakra-ui/react";
 import { Avatar } from "@chakra-ui/react";
@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
 const SHARE = <FontAwesomeIcon icon={faShareNodes} />;
 import { IconButton, Stack } from "@chakra-ui/react";
+// Komponenty
+import Delete from "./deletemodal";
 
 interface IParmasType {
   id: string;
@@ -15,7 +17,6 @@ interface IParmasType {
   nameoflist: string;
   attribute: string;
   searchcallback: Function;
-  deletecallback: Function;
 }
 
 const Row: React.FC<IParmasType> = ({
@@ -24,7 +25,6 @@ const Row: React.FC<IParmasType> = ({
   nameoflist,
   attribute,
   searchcallback,
-  deletecallback,
 }) => {
   return (
     <Tr>
@@ -45,11 +45,7 @@ const Row: React.FC<IParmasType> = ({
             icon={<SearchIcon />}
           />
           <IconButton aria-label="Search database" icon={SHARE} />
-          <IconButton
-            onClick={() => deletecallback(id)}
-            aria-label="Search database"
-            icon={<DeleteIcon />}
-          />
+          <Delete id={id} />
         </Stack>
       </Td>
     </Tr>

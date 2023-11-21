@@ -1,11 +1,10 @@
 // Redux
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   selectCategory,
   selectData,
   selectUser,
   selectUsers,
-  setData,
 } from "../../../features/appcontextSlice";
 // Chakra
 import {
@@ -21,7 +20,6 @@ import {
 import Row from "./components/row";
 
 const TableOfLists = () => {
-  const dispatch = useDispatch();
   const users: any = useSelector(selectUsers);
   const user: any = useSelector(selectUser);
   const category = useSelector(selectCategory);
@@ -49,16 +47,6 @@ const TableOfLists = () => {
     window.location.pathname = `/${id}`;
   };
 
-  const deleteList = (id: string) => {
-    let newdata: { [key: string]: any } = {};
-    Object.keys(data).forEach(function (key: string) {
-      if (key !== id) {
-        newdata[key] = data[key];
-      }
-    });
-    dispatch(setData(newdata));
-  };
-
   const rows = rowsdata.map((row) => (
     <Row
       key={row}
@@ -67,7 +55,6 @@ const TableOfLists = () => {
       nameoflist={row[2]}
       attribute={row[3]}
       searchcallback={goToList}
-      deletecallback={deleteList}
     />
   ));
 
