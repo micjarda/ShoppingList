@@ -15,7 +15,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // Ikonky
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-
 const CART = <FontAwesomeIcon icon={faHome} />;
 // Soubory
 import logo from "../../../../assets/logo.jpg";

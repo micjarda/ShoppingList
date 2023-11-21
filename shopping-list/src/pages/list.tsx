@@ -27,7 +27,8 @@ const List = () => {
     userprofilepics[index] = users[host]?.profilepic;
   });
 
-  if (!data[listid]?.hosts.includes(user)) return <ErrorMessage message="Nejste členem"/>;
+  if (!data[listid]?.hosts.includes(user))
+    return <ErrorMessage message="Nejste členem" />;
 
   return (
     <Box>

@@ -36,7 +36,7 @@ const TableOfLists = () => {
       const attribute = data[key]?.category;
       rowsdata[index] = [id, profilepic, name, attribute];
     };
-    if(data[key]?.hosts.includes(user)) {
+    if (data[key]?.hosts.includes(user)) {
       if (category === "all") {
         pushdata();
       }
