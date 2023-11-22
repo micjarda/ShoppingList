@@ -4,6 +4,7 @@ import {
   selectCategory,
   selectData,
   setCategory,
+  selectUser
 } from "../../../features/appcontextSlice";
 // Chakra
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
@@ -12,11 +13,13 @@ const Categories = () => {
   const dispatch = useDispatch();
   const category = useSelector(selectCategory);
   const data: any = useSelector(selectData);
+  const user: any = useSelector(selectUser);
 
   let buttons: any[] = [];
   let defaultChecked: number = category === "all" ? -1 : 1;
   Object.keys(data).forEach(function (key, index) {
     if (data[key]?.category === category) defaultChecked = index;
+    if(data[key]?.hosts.includes(user))
     buttons.push(
       <Radio
         key={index + 1}
