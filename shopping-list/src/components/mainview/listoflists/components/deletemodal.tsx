@@ -46,9 +46,9 @@ const Delete: React.FC<IParmasType> = ({ id }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Potvrďte</ModalHeader>
+          <ModalHeader>Confirm</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>Trvale smazat nákupní seznam</ModalBody>
+          <ModalBody>Permanently delete shopping list</ModalBody>
           <ModalFooter>
             <Button onClick={() => deleteList(id)} colorScheme="green" mr={3}>
               Yes

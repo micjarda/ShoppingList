@@ -62,13 +62,13 @@ const CreateList = () => {
   return (
     <>
       <Button colorScheme="teal" size="sm" onClick={onOpen}>
-        {PLUS}
+        {PLUS}Add
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Create a new list</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Stack spacing={3}>
