@@ -10,7 +10,7 @@ const Mainview = () => {
       <Grid
         templateAreas={`"nav nav"
                         "list category"`}
-        gridTemplateColumns={"1fr 150px"}
+        gridTemplateColumns={{ base: "1fr", md: "1fr 150px" }}
         h="200px"
         gap="1"
         fontWeight="bold"
@@ -21,7 +21,7 @@ const Mainview = () => {
         <GridItem area={"list"}>
           <TableOfLists />
         </GridItem>
-        <GridItem pl="3" area={"category"}>
+        <GridItem pl="3" area={"category"} className="category">
           <Categories />
         </GridItem>
       </Grid>

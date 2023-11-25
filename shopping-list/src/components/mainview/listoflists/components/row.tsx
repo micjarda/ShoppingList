@@ -10,6 +10,9 @@ const SHARE = <FontAwesomeIcon icon={faShareNodes} />;
 import { IconButton, Stack } from "@chakra-ui/react";
 // Komponenty
 import Delete from "./deletemodal";
+import ButtonMenu from "./menu/menu";
+//Styles
+import "../table.css";
 
 interface IParmasType {
   id: string;
@@ -24,28 +27,32 @@ const Row: React.FC<IParmasType> = ({
   nameoflist,
   attribute,
 }) => {
-
   return (
     <Tr>
       <Td>
         <Avatar name="Dan Abrahmov" src={profilepic} />
       </Td>
       <Td>{nameoflist}</Td>
-      <Td>
+      <Td className="tag-column">
         <Tag size={"md"} variant="solid" colorScheme="teal">
           {attribute}
         </Tag>
       </Td>
       <Td>
-        <Stack spacing={4} direction="row" align="center">
-          <IconButton
-            onClick={() => window.location.pathname = `/${id}`}
-            aria-label="Search database"
-            icon={<SearchIcon />}
-          />
-          <IconButton aria-label="Search database" icon={SHARE} />
-          <Delete id={id} />
-        </Stack>
+        <div className="buttons-column">
+          <Stack spacing={4} direction="row" align="center">
+            <IconButton
+              onClick={() => (window.location.pathname = `/${id}`)}
+              aria-label="Search database"
+              icon={<SearchIcon />}
+            />
+            <IconButton aria-label="Search database" icon={SHARE} />
+            <Delete id={id} />
+          </Stack>
+        </div>
+        <div className="menu-column">
+          <ButtonMenu id={id} />
+        </div>
       </Td>
     </Tr>
   );

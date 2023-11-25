@@ -1,6 +1,9 @@
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { selectData, setData } from "../../../../features/appcontextSlice";
+import {
+  selectData,
+  setData,
+} from "../../../../../../features/appcontextSlice";
 import {
   Modal,
   ModalOverlay,
@@ -11,7 +14,7 @@ import {
   ModalCloseButton,
   Button,
   useDisclosure,
-  IconButton,
+  MenuItem,
 } from "@chakra-ui/react";
 // Ikony
 import { DeleteIcon } from "@chakra-ui/icons";
@@ -37,11 +40,9 @@ const Delete: React.FC<IParmasType> = ({ id }) => {
 
   return (
     <>
-      <IconButton
-        onClick={onOpen}
-        aria-label="Delete database"
-        icon={<DeleteIcon />}
-      />
+      <MenuItem onClick={onOpen} icon={<DeleteIcon />}>
+        Delete
+      </MenuItem>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

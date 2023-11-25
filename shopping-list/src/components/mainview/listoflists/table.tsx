@@ -18,6 +18,8 @@ import {
 } from "@chakra-ui/react";
 
 import Row from "./components/row";
+//Styles
+import "./table.css";
 
 const TableOfLists = () => {
   const users: any = useSelector(selectUsers);
@@ -25,7 +27,7 @@ const TableOfLists = () => {
   const category = useSelector(selectCategory);
   const data: any = useSelector(selectData);
 
-  let rowsdata: any[] = [];
+  const rowsdata: any[] = [];
   Object.keys(data).forEach(function (key, index) {
     const pushdata = () => {
       const id = key;
@@ -61,8 +63,8 @@ const TableOfLists = () => {
           <Tr>
             <Th>Profile pic</Th>
             <Th>name</Th>
-            <Th>attr</Th>
-            <Th>buttons</Th>
+            <Th className="tag-column">Category</Th>
+            <Th>actions</Th>
           </Tr>
         </Thead>
         <Tbody>{rows}</Tbody>

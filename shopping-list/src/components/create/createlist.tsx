@@ -15,6 +15,7 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Select,
 } from "@chakra-ui/react";
 import { Button, Input, Stack } from "@chakra-ui/react";
 // Ikony
@@ -30,10 +31,10 @@ const CreateList = () => {
   const user: any = useSelector(selectUser);
   const data: any = useSelector(selectData);
   const [nameOfList, setNameOfList] = useState("");
-  const [attribute, setAttribute] = useState("");
+  const [category, setCategory] = useState("");
 
   const createList = () => {
-    if (nameOfList.length > 0 && attribute.length > 0) {
+    if (nameOfList.length > 0 && category.length > 0) {
       const random = Math.round(Math.random() * 1000);
       const dataclone = structuredClone(data);
       dataclone[random.toString()] = {
@@ -41,17 +42,27 @@ const CreateList = () => {
         name: nameOfList,
         hosts: [user],
         items: [],
-        category: attribute,
+        category: category,
       };
       dispatch(setData(dataclone));
       window.location.pathname = "/";
     }
   };
 
+  const allcategoryes: any[] = [];
+  Object.keys(data).forEach(function (key, index) {
+    allcategoryes.push(
+      <option key={index} value={data[key].category}>
+        {data[key].category}
+      </option>,
+    );
+    // allcategoryes.push({ value: data[key].category, label: data[key].category })
+  });
+
   return (
     <>
       <Button colorScheme="teal" size="sm" onClick={onOpen}>
-        {PLUS}Create
+        {PLUS}
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -67,26 +78,26 @@ const CreateList = () => {
                 placeholder="Name of list"
               />
               <Input
-                onChange={(e) => setAttribute(e.target.value)}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
                 variant="flushed"
-                placeholder="Attribute"
+                placeholder="Category"
               />
-              <Button onClick={createList} colorScheme="teal" variant="solid">
-                Create
-              </Button>
-              <Button
-                onClick={() => (window.location.pathname = "/")}
-                colorScheme="red"
-                variant="solid"
+              <Select
+                placeholder="Select existing category"
+                onChange={(ev) => setCategory(ev.target.value)}
               >
-                Cancel
-              </Button>
+                {allcategoryes}
+              </Select>
             </Stack>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button colorScheme="gray" mr={3} onClick={onClose}>
               Close
+            </Button>
+            <Button onClick={createList} colorScheme="blue" variant="solid">
+              Create
             </Button>
           </ModalFooter>
         </ModalContent>

@@ -1,0 +1,21 @@
+/* Tady specifikuj, co chceš skrýt */
+.menu-column {
+  display: none;
+}
+
+/* Pro mobilní zobrazení */
+@media (max-width: 767px) {
+  /* Tady specifikuj, co chceš skrýt */
+  .menu-column {
+    display: block;
+  }
+  .tag-column {
+    display: none;
+  }
+  .buttons-column {
+    display: none;
+  }
+  .category {
+    display: none;
+  }
+}
