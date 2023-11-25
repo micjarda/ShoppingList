@@ -85,7 +85,7 @@ const CreateList = () => {
               />
               <Select
                 placeholder="Select existing category"
-                onChange={(ev) => setCategory(ev.target.value)}
+                onChange={(e) => setCategory(e.target.value)}
               >
                 {allcategoryes}
               </Select>

@@ -16,27 +16,35 @@ const Categories = () => {
   const user: any = useSelector(selectUser);
 
   const buttons: any[] = [];
-  let defaultChecked: number = category === "all" ? -1 : 1;
-  Object.keys(data).forEach(function (key, index) {
-    if (data[key]?.category === category) defaultChecked = index;
-    if (data[key]?.hosts.includes(user))
-      buttons.push(
-        <Radio
-          key={index + 1}
-          value={index.toString()}
-          onChange={() => {
-            dispatch(setCategory(data[key]?.category));
-          }}
-        >
-          {data[key]?.category}
-        </Radio>,
-      );
+
+  const categoryes: any = [];
+  Object.keys(data).forEach(function (key) {
+    if (data[key]?.hosts.includes(user)) {
+      if (!categoryes.includes(data[key]?.category)) {
+        categoryes.push(data[key]?.category)
+      }
+    }
+  });
+
+  console.log(categoryes)
+  categoryes.map((cat: any, index: any) => {
+    buttons.push(
+      <Radio
+        key={index + 1}
+        value={index.toString()}
+        onChange={() => {
+          dispatch(setCategory(cat));
+        }}
+      >
+        {cat}
+      </Radio>,
+    );
   });
 
   return (
     <>
       <h2>Categories</h2>
-      <RadioGroup defaultValue={defaultChecked.toString()}>
+      <RadioGroup defaultValue={category}>
         <Stack>
           <Radio
             key={0}
