@@ -26,12 +26,11 @@ const Categories = () => {
     }
   });
 
-  console.log(categoryes)
   categoryes.map((cat: any, index: any) => {
     buttons.push(
       <Radio
         key={index + 1}
-        value={index.toString()}
+        value={cat}
         onChange={() => {
           dispatch(setCategory(cat));
         }}
@@ -55,7 +54,7 @@ const Categories = () => {
           >
             All
           </Radio>
-          ,{buttons}
+          {buttons}
         </Stack>
       </RadioGroup>
     </>
