@@ -50,7 +50,11 @@ const Delete: React.FC<IParmasType> = ({ id }) => {
           <ModalCloseButton />
           <ModalBody>Permanently delete shopping list</ModalBody>
           <ModalFooter>
-            <Button onClick={() => deleteList(id)} colorScheme="green" mr={3}>
+            <Button
+              onClick={() => deleteList(id)}
+              colorScheme="green"
+              mr={3}
+            >
               Yes
             </Button>
             <Button onClick={onClose} colorScheme="red" mr={3}>

@@ -16,13 +16,13 @@ import Sharewith from "../components/list/sharingwith/sharewith";
 import ErrorMessage from "../screens/error/error";
 
 const List = () => {
-  let { id } = useParams();
+  const { id } = useParams();
   const users: any = useSelector(selectUsers);
   const user: any = useSelector(selectUser);
   const data: any = useSelector(selectData);
 
-  let listid = id ? id : "001";
-  let userprofilepics: any[] = [];
+  const listid = id ? id : "001";
+  const userprofilepics: any[] = [];
   data[listid.toString()].hosts.map((host: string, index: number) => {
     userprofilepics[index] = users[host]?.profilepic;
   });

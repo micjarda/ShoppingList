@@ -21,7 +21,7 @@ const Categories = () => {
   Object.keys(data).forEach(function (key) {
     if (data[key]?.hosts.includes(user)) {
       if (!categoryes.includes(data[key]?.category)) {
-        categoryes.push(data[key]?.category)
+        categoryes.push(data[key]?.category);
       }
     }
   });

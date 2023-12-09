@@ -26,7 +26,13 @@ import NMenu from "./components/menu/menu";
 
 const Links = [["/", CART, "Home"]];
 
-const NavLink = ({ children, href }: { children: ReactNode; href: string }) => (
+const NavLink = ({
+  children,
+  href,
+}: {
+  children: ReactNode;
+  href: string;
+}) => (
   <Link
     px={2}
     py={1}
@@ -62,7 +68,11 @@ const Default = () => {
               onClick={() => (window.location.href = "/")}
             />
           </Box>
-          <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
+          <HStack
+            as={"nav"}
+            spacing={4}
+            display={{ base: "none", md: "flex" }}
+          >
             {Links.map((link, index) => (
               <NavLink href={link[0].toString()} key={index}>
                 <b className="left-icon">{link[1]}</b>

@@ -16,17 +16,17 @@ const appContext = createSlice({
       "01": {
         username: "micjarda",
         profilepic:
-          "https://tse3.mm.bing.net/th/id/OIP.4OlDoeQOA1csOMTLrLAsDAAAAA?pid=ImgDet&rs=1",
+          "https://shorturl.at/ewCLQ",
       },
       "02": {
         username: "Katka",
         profilepic:
-          "https://play-lh.googleusercontent.com/8I_JG4YjHR1KyfSiTzKhAmJPlx7k9rJ6EUSdj8t-tLQRGUdH8csDzV7kP9mzF6bBUQ0",
+          "https://shorturl.at/kmwI7",
       },
       "03": {
         username: "Rostislav",
         profilepic:
-          "https://tse2.mm.bing.net/th/id/OIP.fdHmnwrQfo9dNIULWzYQ4QHaE7?pid=ImgDet&rs=1",
+          "https://shorturl.at/sxBDN",
       },
     },
     data: {
@@ -36,7 +36,7 @@ const appContext = createSlice({
         hosts: ["01", "02", "03"],
         items: [
           ["Jablko", false],
-          ["Banány", false],
+          ["Banány", true],
           ["Jahody", true],
         ],
         category: "Výživa",
@@ -76,16 +76,16 @@ const appContext = createSlice({
   } as IModeContext,
   reducers: {
     setData: (state, action) => {
-      state.data = action.payload;
+      return { ...state, data: action.payload };
     },
     setCategory: (state, action) => {
-      state.selectedCategory = action.payload;
+      return { ...state, selectedCategory: action.payload };
     },
     setCurrentList: (state, action) => {
-      state.currentList = action.payload;
+      return { ...state, currentList: action.payload };
     },
     setUser: (state, action) => {
-      state.currentUser = action.payload;
+      return { ...state, currentUser: action.payload };
     },
   },
 });
@@ -96,7 +96,8 @@ export const selectCategory = (state: RootState) =>
   state.appcontext.selectedCategory;
 export const selectCurrentList = (state: RootState) =>
   state.appcontext.currentList;
-export const selectUser = (state: RootState) => state.appcontext.currentUser;
+export const selectUser = (state: RootState) =>
+  state.appcontext.currentUser;
 
 export const { setData, setCategory, setCurrentList, setUser } =
   appContext.actions;

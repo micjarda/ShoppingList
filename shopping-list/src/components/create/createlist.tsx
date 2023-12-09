@@ -56,7 +56,6 @@ const CreateList = () => {
         {data[key].category}
       </option>,
     );
-    // allcategoryes.push({ value: data[key].category, label: data[key].category })
   });
 
   return (
@@ -96,7 +95,11 @@ const CreateList = () => {
             <Button colorScheme="gray" mr={3} onClick={onClose}>
               Close
             </Button>
-            <Button onClick={createList} colorScheme="blue" variant="solid">
+            <Button
+              onClick={createList}
+              colorScheme="blue"
+              variant="solid"
+            >
               Create
             </Button>
           </ModalFooter>
