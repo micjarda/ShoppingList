@@ -5,6 +5,7 @@ import App from "./App.tsx";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
+import Mock from "./components/wraps/mock/mock"
 // Styly
 import "./index.css";
 
@@ -12,7 +13,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
       <ChakraProvider>
-        <App />
+        <Mock>
+          <App />
+        </Mock>
       </ChakraProvider>
     </Provider>
   </React.StrictMode>,

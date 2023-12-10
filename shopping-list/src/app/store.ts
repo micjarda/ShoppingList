@@ -14,6 +14,7 @@ import storage from "redux-persist/lib/storage";
 // Reducers
 import appcontextSlice from "../features/appcontextSlice";
 // Api
+import { shopApi } from "../features/api/getshopdata";
 const persistConfig = {
   key: "root",
   storage,
@@ -24,6 +25,7 @@ const persistedAppContext = persistReducer(persistConfig, appcontextSlice);
 const store = configureStore({
   reducer: {
     appcontext: persistedAppContext,
+    [shopApi.reducerPath]: shopApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -37,7 +39,7 @@ const store = configureStore({
           REGISTER,
         ],
       },
-    }),
+    }).concat(shopApi.middleware),
 });
 
 // Create the persistor

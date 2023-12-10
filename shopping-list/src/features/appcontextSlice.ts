@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../app/store";
 
+// import settings from "../../settings.json"
+
 interface IModeContext {
   users: object;
   data: object;
