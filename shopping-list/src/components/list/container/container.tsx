@@ -1,6 +1,6 @@
 // Redux
 import { useSelector } from "react-redux";
-import { selectData } from "../../../features/appcontextSlice";
+import { selectLists } from "../../../features/slices/listSlice";
 import { Stack } from "@chakra-ui/react";
 
 import CheckBox from "./components/checkbox";
@@ -10,15 +10,14 @@ interface IParmasType {
 }
 
 const Container: React.FC<IParmasType> = ({ id }) => {
-  const data: any = useSelector(selectData);
+  const lists: any = useSelector(selectLists);
   return (
     <Stack>
-      {
-        data[id]?.items.map((item: any) => (
-          <CheckBox key={Math.random()} listid={id} item={item} />
-        ))
-      }
-    </Stack>);
+      {lists[id]?.items.map((item: any) => (
+        <CheckBox key={Math.random()} listid={id} item={item} />
+      ))}
+    </Stack>
+  );
 };
 
 export default Container;

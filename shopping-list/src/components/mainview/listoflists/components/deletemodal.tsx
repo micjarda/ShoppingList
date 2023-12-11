@@ -1,6 +1,7 @@
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { selectData, setData } from "../../../../features/appcontextSlice";
+import { selectLists, setLists }
+  from "../../../../features/slices/listSlice";
 import {
   Modal,
   ModalOverlay,
@@ -22,17 +23,17 @@ interface IParmasType {
 
 const Delete: React.FC<IParmasType> = ({ id }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const data: any = useSelector(selectData);
+  const lists: any = useSelector(selectLists);
   const dispatch = useDispatch();
 
   const deleteList = (id: string) => {
     const newdata: { [key: string]: any } = {};
-    Object.keys(data).forEach(function (key: string) {
+    Object.keys(lists).forEach(function (key: string) {
       if (key !== id) {
-        newdata[key] = data[key];
+        newdata[key] = lists[key];
       }
     });
-    dispatch(setData(newdata));
+    dispatch(setLists(newdata));
   };
 
   return (

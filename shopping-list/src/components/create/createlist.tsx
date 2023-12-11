@@ -1,10 +1,12 @@
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectData,
+  selectLists,
+  setLists,
+} from "../../features/slices/listSlice";
+import {
   selectUser,
-  setData,
-} from "../../features/appcontextSlice";
+} from "../../features/slices/userSlice";
 // Chakra
 import {
   Modal,
@@ -29,31 +31,31 @@ const CreateList = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const user: any = useSelector(selectUser);
-  const data: any = useSelector(selectData);
+  const lists: any = useSelector(selectLists);
   const [nameOfList, setNameOfList] = useState("");
   const [category, setCategory] = useState("");
 
   const createList = () => {
     if (nameOfList.length > 0 && category.length > 0) {
       const random = Math.round(Math.random() * 1000);
-      const dataclone = structuredClone(data);
-      dataclone[random.toString()] = {
+      const listsclone = structuredClone(lists);
+      listsclone[random.toString()] = {
         owner: user,
         name: nameOfList,
         hosts: [user],
         items: [],
         category: category,
       };
-      dispatch(setData(dataclone));
+      dispatch(setLists(listsclone));
       window.location.pathname = "/";
     }
   };
 
   const allcategoryes: any[] = [];
-  Object.keys(data).forEach(function (key, index) {
+  Object.keys(lists).forEach(function (key, index) {
     allcategoryes.push(
-      <option key={index} value={data[key].category}>
-        {data[key].category}
+      <option key={index} value={lists[key].category}>
+        {lists[key].category}
       </option>,
     );
   });

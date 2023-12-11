@@ -2,17 +2,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCategory,
-  selectData,
+  selectLists,
   setCategory,
+} from "../../../features/slices/listSlice";
+import {
   selectUser,
-} from "../../../features/appcontextSlice";
+} from "../../../features/slices/userSlice";
 // Chakra
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
 
 const Categories = () => {
   const dispatch = useDispatch();
   const category = useSelector(selectCategory);
-  const data: any = useSelector(selectData);
+  const data: any = useSelector(selectLists);
   const user: any = useSelector(selectUser);
 
   const buttons: any[] = [];

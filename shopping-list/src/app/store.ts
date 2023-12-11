@@ -12,7 +12,8 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 // Reducers
-import appcontextSlice from "../features/appcontextSlice";
+import listSlice from "../features/slices/listSlice";
+import userSlice from "../features/slices/userSlice";
 // Api
 import { shopApi } from "../features/api/getshopdata";
 const persistConfig = {
@@ -20,11 +21,13 @@ const persistConfig = {
   storage,
 };
 
-const persistedAppContext = persistReducer(persistConfig, appcontextSlice);
+const persistedLists = persistReducer(persistConfig, listSlice);
+const persistedUsers = persistReducer(persistConfig, userSlice);
 
 const store = configureStore({
   reducer: {
-    appcontext: persistedAppContext,
+    lists: persistedLists,
+    users: persistedUsers,
     [shopApi.reducerPath]: shopApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

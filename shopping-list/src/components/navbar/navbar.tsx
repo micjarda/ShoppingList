@@ -1,8 +1,5 @@
 // Knihovny
 import { Box, useColorModeValue } from "@chakra-ui/react";
-// Redux
-// Styly
-// import "./navbar.css";
 // Bars
 import Default from "./bars/default/default";
 

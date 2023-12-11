@@ -1,4 +1,3 @@
-// Widgety
 // Knihovny
 import {
   Avatar,
@@ -16,7 +15,7 @@ import {
   selectUser,
   selectUsers,
   setUser,
-} from "../../../../../../features/appcontextSlice";
+} from "../../../../../../features/slices/userSlice";
 
 const USER = <FontAwesomeIcon icon={faUser} />;
 
@@ -25,14 +24,14 @@ const nMenu = () => {
   const currentuser = useSelector(selectUser);
   const users: any = useSelector(selectUsers);
 
-  let profilepic = users[currentuser]?.profilepic;
+  const profilepic = users[currentuser]?.profilepic;
 
-  let usersarr: any[] = [];
+  const usersarr: any[] = [];
   Object.keys(users).forEach(function (key, index) {
     usersarr[index] = [key, users[key]?.username];
   });
 
-  let menuitems: any[] = usersarr.map((user) => (
+  const menuitems: any[] = usersarr.map((user) => (
     <MenuItem key={user} onClick={() => dispatch(setUser(user[0]))}>
       <div className="left-icon">
         {USER} {user[1]}

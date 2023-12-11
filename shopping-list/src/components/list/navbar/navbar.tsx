@@ -1,12 +1,3 @@
-// Redux
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   selectCategory,
-//   selectUsers,
-//   selectData,
-//   setCategory,
-// } from "../features/appcontextSlice";
-
 import { ArrowLeftIcon } from "@chakra-ui/icons";
 import { IconButton, Wrap, WrapItem } from "@chakra-ui/react";
 

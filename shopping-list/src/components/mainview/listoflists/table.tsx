@@ -2,10 +2,12 @@
 import { useSelector } from "react-redux";
 import {
   selectCategory,
-  selectData,
+  selectLists,
+} from "../../../features/slices/listSlice";
+import {
   selectUser,
   selectUsers,
-} from "../../../features/appcontextSlice";
+} from "../../../features/slices/userSlice";
 // Chakra
 import {
   Table,
@@ -25,22 +27,22 @@ const TableOfLists = () => {
   const users: any = useSelector(selectUsers);
   const user: any = useSelector(selectUser);
   const category = useSelector(selectCategory);
-  const data: any = useSelector(selectData);
+  const lists: any = useSelector(selectLists);
 
   const rowsdata: any[] = [];
-  Object.keys(data).forEach(function (key, index) {
+  Object.keys(lists).forEach(function (key, index) {
     const pushdata = () => {
       const id = key;
-      const profilepic = users[data[key]?.owner]?.profilepic;
-      const name = data[key]?.name;
-      const attribute = data[key]?.category;
+      const profilepic = users[lists[key]?.owner]?.profilepic;
+      const name = lists[key]?.name;
+      const attribute = lists[key]?.category;
       rowsdata[index] = [id, profilepic, name, attribute];
     };
-    if (data[key]?.hosts.includes(user)) {
+    if (lists[key]?.hosts.includes(user)) {
       if (category === "all") {
         pushdata();
       }
-      if (category !== "all" && category === data[key]?.category) {
+      if (category !== "all" && category === lists[key]?.category) {
         pushdata();
       }
     }

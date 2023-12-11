@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectData, setData } from "../../../../features/appcontextSlice";
+import { selectLists, setLists }
+  from "../../../../features/slices/listSlice";
 import { Checkbox } from "@chakra-ui/react";
 
 interface IParmasType {
@@ -12,11 +13,11 @@ const CheckBox: React.FC<IParmasType> = ({ listid, item }) => {
   const isitemchecked = item[1];
 
   const dispatch = useDispatch();
-  const data: any = useSelector(selectData);
+  const data: any = useSelector(selectLists);
 
   const setChecked = (event: any) => {
     const onchangeitemname = event.target.value;
-    const updatedData = {
+    const updatedLists = {
       ...data,
       [listid]: {
         ...data[listid],
@@ -28,33 +29,32 @@ const CheckBox: React.FC<IParmasType> = ({ listid, item }) => {
         }),
       },
     };
-    dispatch(setData(updatedData));
+    dispatch(setLists(updatedLists));
   };
 
   return (
     <>
-      {
-        !item[1] ?
-          <Checkbox
-            value={itemname}
-            onChange={setChecked}
-            iconColor="blue.400"
-            iconSize="1rem"
-          >
-            {itemname}
-          </Checkbox>
-          :
-          <Checkbox
-            iconColor="blue.400"
-            iconSize="1rem"
-            isDisabled
-            defaultChecked
-          >
-            {itemname}
-          </Checkbox>
-      }
+      {!item[1] ? (
+        <Checkbox
+          value={itemname}
+          onChange={setChecked}
+          iconColor="blue.400"
+          iconSize="1rem"
+        >
+          {itemname}
+        </Checkbox>
+      ) : (
+        <Checkbox
+          iconColor="blue.400"
+          iconSize="1rem"
+          isDisabled
+          defaultChecked
+        >
+          {itemname}
+        </Checkbox>
+      )}
     </>
   );
-}
+};
 
 export default CheckBox;

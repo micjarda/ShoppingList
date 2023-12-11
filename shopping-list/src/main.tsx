@@ -5,7 +5,7 @@ import App from "./App.tsx";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
-import Mock from "./components/wraps/mock/mock"
+import Mock from "./components/wraps/mock.tsx";
 // Styly
 import "./index.css";
 

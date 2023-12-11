@@ -1,37 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../app/store";
+import { RootState } from "../../app/store";
 
-// import settings from "../../settings.json"
-
-interface IModeContext {
-  users: object;
-  data: object;
+interface IListsContext {
+  lists: object;
   selectedCategory: string;
   currentList: object;
-  currentUser: string;
 }
 
-const appContext = createSlice({
-  name: "appcontext",
+const Lists = createSlice({
+  name: "lists",
   initialState: {
-    users: {
-      "01": {
-        username: "micjarda",
-        profilepic:
-          "https://shorturl.at/ewCLQ",
-      },
-      "02": {
-        username: "Katka",
-        profilepic:
-          "https://shorturl.at/kmwI7",
-      },
-      "03": {
-        username: "Rostislav",
-        profilepic:
-          "https://shorturl.at/sxBDN",
-      },
-    },
-    data: {
+    lists: {
       "001": {
         owner: "01",
         name: "Jídlo",
@@ -75,10 +54,10 @@ const appContext = createSlice({
       hosts: [],
     },
     currentUser: "01",
-  } as IModeContext,
+  } as IListsContext,
   reducers: {
-    setData: (state, action) => {
-      return { ...state, data: action.payload };
+    setLists: (state, action) => {
+      return { ...state, lists: action.payload };
     },
     setCategory: (state, action) => {
       return { ...state, selectedCategory: action.payload };
@@ -86,21 +65,16 @@ const appContext = createSlice({
     setCurrentList: (state, action) => {
       return { ...state, currentList: action.payload };
     },
-    setUser: (state, action) => {
-      return { ...state, currentUser: action.payload };
-    },
   },
 });
 
-export const selectUsers = (state: RootState) => state.appcontext.users;
-export const selectData = (state: RootState) => state.appcontext.data;
+export const selectLists = (state: RootState) => state.lists.lists;
 export const selectCategory = (state: RootState) =>
-  state.appcontext.selectedCategory;
+  state.lists.selectedCategory;
 export const selectCurrentList = (state: RootState) =>
-  state.appcontext.currentList;
-export const selectUser = (state: RootState) =>
-  state.appcontext.currentUser;
+  state.lists.currentList;
 
-export const { setData, setCategory, setCurrentList, setUser } =
-  appContext.actions;
-export default appContext.reducer;
+
+export const { setLists, setCategory, setCurrentList } =
+  Lists.actions;
+export default Lists.reducer;

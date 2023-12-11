@@ -3,8 +3,10 @@ import { useSelector } from "react-redux";
 import {
   selectUsers,
   selectUser,
-  selectData,
-} from "../features/appcontextSlice";
+} from "../features/slices/userSlice";
+import {
+  selectLists,
+} from "../features/slices/listSlice";
 // Chakra
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 //Hooks
@@ -19,7 +21,7 @@ const List = () => {
   const { id } = useParams();
   const users: any = useSelector(selectUsers);
   const user: any = useSelector(selectUser);
-  const data: any = useSelector(selectData);
+  const data: any = useSelector(selectLists);
 
   const listid = id ? id : "001";
   const userprofilepics: any[] = [];
