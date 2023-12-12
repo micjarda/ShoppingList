@@ -1,18 +1,21 @@
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import {
+  selectListsState,
   selectCategory,
   selectLists,
   setCategory,
 } from "../../../features/slices/listSlice";
-import {
-  selectUser,
-} from "../../../features/slices/userSlice";
+import { selectUser } from "../../../features/slices/userSlice";
 // Chakra
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
+// Screens
+import Loading from "../../../screens/loading/loading";
+import ErrorMessage from "../../../screens/error/error";
 
 const Categories = () => {
   const dispatch = useDispatch();
+  const liststate = useSelector(selectListsState);
   const category = useSelector(selectCategory);
   const data: any = useSelector(selectLists);
   const user: any = useSelector(selectUser);
@@ -44,21 +47,29 @@ const Categories = () => {
 
   return (
     <>
-      <h2>Categories</h2>
-      <RadioGroup defaultValue={category}>
-        <Stack>
-          <Radio
-            key={0}
-            value={"all"}
-            onChange={() => {
-              dispatch(setCategory("all"));
-            }}
-          >
-            All
-          </Radio>
-          {buttons}
-        </Stack>
-      </RadioGroup>
+      {
+        liststate === "loading" ?
+          <Loading />
+          :
+          liststate === "error" ?
+            <ErrorMessage message="" />
+            :
+            <RadioGroup defaultValue={category}>
+              <Stack>
+                <Radio
+                  key={0}
+                  value={"all"}
+                  onChange={() => {
+                    dispatch(setCategory("all"));
+                  }}
+                >
+                  All
+                </Radio>
+                {buttons}
+              </Stack>
+            </RadioGroup>
+      }
+
     </>
   );
 };

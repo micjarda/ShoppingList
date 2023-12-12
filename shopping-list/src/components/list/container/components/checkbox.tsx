@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectLists, setLists }
-  from "../../../../features/slices/listSlice";
+import {
+  selectLists,
+  setLists,
+} from "../../../../features/slices/listSlice";
 import { Checkbox } from "@chakra-ui/react";
 
 interface IParmasType {

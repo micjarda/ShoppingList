@@ -1,12 +1,7 @@
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectLists,
-  setLists,
-} from "../../features/slices/listSlice";
-import {
-  selectUser,
-} from "../../features/slices/userSlice";
+import { selectLists, setLists } from "../../features/slices/listSlice";
+import { selectUser } from "../../features/slices/userSlice";
 // Chakra
 import {
   Modal,

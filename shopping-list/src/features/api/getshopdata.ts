@@ -10,7 +10,10 @@ export const shopApi: any = createApi({
   }),
   tagTypes: ["allshopdata"],
   endpoints: (builder) => ({
-    getShopData: builder.query<IBazaarData[], string>({
+    getLists: builder.query<IBazaarData[], string>({
+      query: () => `bazaar/InitData`,
+    }),
+    getUsers: builder.query<IBazaarData[], string>({
       query: () => `bazaar/InitData`,
     }),
   }),
@@ -18,5 +21,5 @@ export const shopApi: any = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useGetShopDataQuery } = shopApi;
+export const { useGetListsQuery, useGetUsersQuery } = shopApi;
 export default shopApi.reducer;

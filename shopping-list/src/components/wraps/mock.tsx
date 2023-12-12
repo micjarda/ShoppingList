@@ -1,34 +1,54 @@
-import { useGetShopDataQuery } from "../../features/api/getshopdata";
+import {
+  useGetListsQuery,
+  useGetUsersQuery,
+} from "../../features/api/getshopdata";
 import { useDispatch } from "react-redux";
-import { setLists } from "../../features/slices/listSlice";
+import { setLists, setListState } from "../../features/slices/listSlice";
+import { setUsers, setUsersState } from "../../features/slices/userSlice";
 
 import settings from "../../../settings.json";
-import ErrorMessage from "../../screens/error/error";
-import Loading from "../../screens/loading/loading";
-
-import Lists from "../../../mock/lists/lists.json";
-import Users from "../../../mock/users/users.json";
-import { setUser } from "../../features/slices/appcontextSlice";
 
 const Mock = ({ children }: any) => {
   const dispatch = useDispatch();
   const mockdata = settings?.mock;
-  const { data, isLoading, error } = useGetShopDataQuery();
+  const {
+    userData,
+    isLoading: isUserOnLoading,
+    error: isUserOnError,
+  } = useGetListsQuery();
+  const {
+    listData,
+    isLoading: isListLoading,
+    error: isListOnError,
+  } = useGetUsersQuery();
 
-  const lists = JSON.stringify(Lists);
-  const users = JSON.stringify(Users);
+  if (mockdata) {
+    dispatch(setUsersState("sucsses"));
+    dispatch(setListState("sucsses"));
+  }
 
   if (!mockdata) {
-    if (error) return <ErrorMessage message="Data se nepovedlo načíst" />;
+    if (isUserOnError)
+      dispatch(setUsersState("error"));
 
-    if (isLoading) return <Loading />;
+    if (isUserOnLoading)
+      dispatch(setUsersState("loading"))
 
-    if (!error && !isLoading) {
-      if (data) dispatch(setLists(data));
+    if (!isUserOnError && !isUserOnLoading) {
+      if (userData) dispatch(setUsers(listData));
     }
-  } else {
-    setLists(lists);
-    setUser(users);
+  }
+
+  if (!mockdata) {
+    if (isListOnError)
+      dispatch(setListState("error"));
+
+    if (isListLoading)
+      dispatch(setListState("loading"));
+
+    if (!isListOnError && !isListLoading) {
+      if (listData) dispatch(setLists(listData));
+    }
   }
   return children;
 };

@@ -1,6 +1,7 @@
 // Redux
 import { useSelector } from "react-redux";
 import {
+  selectListsState,
   selectCategory,
   selectLists,
 } from "../../../features/slices/listSlice";
@@ -18,7 +19,9 @@ import {
   Th,
   TableContainer,
 } from "@chakra-ui/react";
-
+// Screens
+import Loading from "../../../screens/loading/loading";
+import ErrorMessage from "../../../screens/error/error";
 import Row from "./components/row";
 //Styles
 import "./table.css";
@@ -26,6 +29,7 @@ import "./table.css";
 const TableOfLists = () => {
   const users: any = useSelector(selectUsers);
   const user: any = useSelector(selectUser);
+  const liststate = useSelector(selectListsState);
   const category = useSelector(selectCategory);
   const lists: any = useSelector(selectLists);
 
@@ -59,20 +63,30 @@ const TableOfLists = () => {
   ));
 
   return (
-    <TableContainer>
-      <Table variant="simple">
-        <Thead>
-          <Tr>
-            <Th>Profile pic</Th>
-            <Th>name</Th>
-            <Th className="tag-column">Category</Th>
-            <Th>actions</Th>
-          </Tr>
-        </Thead>
-        <Tbody>{rows}</Tbody>
-        <Tfoot></Tfoot>
-      </Table>
-    </TableContainer>
+    <>
+      {
+        liststate === "loading" ?
+          <Loading />
+          :
+          liststate === "error" ?
+            <ErrorMessage message="Listy se nepovedlo načíst" />
+            :
+            <TableContainer>
+              <Table variant="simple">
+                <Thead>
+                  <Tr>
+                    <Th>Profile pic</Th>
+                    <Th>name</Th>
+                    <Th className="tag-column">Category</Th>
+                    <Th>actions</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>{rows}</Tbody>
+                <Tfoot></Tfoot>
+              </Table>
+            </TableContainer>
+      }
+    </>
   );
 };
 

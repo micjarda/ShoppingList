@@ -1,12 +1,7 @@
 // Redux
 import { useSelector } from "react-redux";
-import {
-  selectUsers,
-  selectUser,
-} from "../features/slices/userSlice";
-import {
-  selectLists,
-} from "../features/slices/listSlice";
+import { selectUsers, selectUser } from "../features/slices/userSlice";
+import { selectLists } from "../features/slices/listSlice";
 // Chakra
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 //Hooks

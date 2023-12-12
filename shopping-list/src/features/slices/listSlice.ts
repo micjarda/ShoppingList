@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
+import ListsFile from "../../../mock/lists/lists.json";
+
 interface IListsContext {
+  state: "loading" | "error" | "sucsses";
   lists: object;
   selectedCategory: string;
   currentList: object;
@@ -10,43 +13,9 @@ interface IListsContext {
 const Lists = createSlice({
   name: "lists",
   initialState: {
+    state: "loading",
     lists: {
-      "001": {
-        owner: "01",
-        name: "Jídlo",
-        hosts: ["01", "02", "03"],
-        items: [
-          ["Jablko", false],
-          ["Banány", true],
-          ["Jahody", true],
-        ],
-        category: "Výživa",
-        tag: 2,
-      },
-      "002": {
-        owner: "02",
-        name: "Oblečení",
-        hosts: ["03", "01"],
-        items: [
-          ["Boty", false],
-          ["Bunda", false],
-          ["Čepice", true],
-        ],
-        category: "Šatník",
-        tag: 1,
-      },
-      "003": {
-        owner: "03",
-        name: "Nářadí",
-        hosts: ["03"],
-        items: [
-          ["Boty", false],
-          ["Bunda", false],
-          ["Čepice", true],
-        ],
-        category: "Dílna",
-        tag: 1,
-      },
+      ...ListsFile,
     },
     selectedCategory: "all",
     currentList: {
@@ -56,6 +25,9 @@ const Lists = createSlice({
     currentUser: "01",
   } as IListsContext,
   reducers: {
+    setListState: (state, action) => {
+      return { ...state, state: action.payload };
+    },
     setLists: (state, action) => {
       return { ...state, lists: action.payload };
     },
@@ -73,8 +45,7 @@ export const selectCategory = (state: RootState) =>
   state.lists.selectedCategory;
 export const selectCurrentList = (state: RootState) =>
   state.lists.currentList;
-
-
-export const { setLists, setCategory, setCurrentList } =
+export const selectListsState = (state: RootState) => state.lists.state;
+export const { setListState, setLists, setCategory, setCurrentList } =
   Lists.actions;
 export default Lists.reducer;
