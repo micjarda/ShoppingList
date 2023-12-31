@@ -12,6 +12,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import ukflag from "../../../../../../assets/united-kingdom.png";
+import czflag from "../../../../../../assets/czech-republic.png";
 
 const Setlang = () => {
   const dispatch = useDispatch();
@@ -28,11 +30,19 @@ const Setlang = () => {
         as={Button}
         rightIcon={<ChevronDownIcon />}
       >
-        {currentlang}
+        <img
+          src={currentlang === "en" ? ukflag : czflag}
+          alt="alt"
+          width={20}
+          height={10}
+        />
       </MenuButton>
       <MenuList>
-        <MenuItem onClick={() => handleSetLang("en")}>en</MenuItem>
-        <MenuItem onClick={() => handleSetLang("cs")}>cs</MenuItem>
+        {currentlang === "en" ? (
+          <MenuItem onClick={() => handleSetLang("cs")}>cs</MenuItem>
+        ) : (
+          <MenuItem onClick={() => handleSetLang("en")}>en</MenuItem>
+        )}
       </MenuList>
     </Menu>
   );
