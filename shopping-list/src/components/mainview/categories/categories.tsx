@@ -6,7 +6,10 @@ import {
   selectLists,
   setCategory,
 } from "../../../features/slices/listSlice";
-import { selectUser } from "../../../features/slices/userSlice";
+import {
+  selectLang,
+  selectUser,
+} from "../../../features/slices/userSlice";
 // Chakra
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
 // Screens
@@ -19,6 +22,7 @@ const Categories = () => {
   const category = useSelector(selectCategory);
   const data: any = useSelector(selectLists);
   const user: any = useSelector(selectUser);
+  const lang = useSelector(selectLang);
 
   const buttons: any[] = [];
 
@@ -47,29 +51,26 @@ const Categories = () => {
 
   return (
     <>
-      {
-        liststate === "loading" ?
-          <Loading />
-          :
-          liststate === "error" ?
-            <ErrorMessage message="" />
-            :
-            <RadioGroup defaultValue={category}>
-              <Stack>
-                <Radio
-                  key={0}
-                  value={"all"}
-                  onChange={() => {
-                    dispatch(setCategory("all"));
-                  }}
-                >
-                  All
-                </Radio>
-                {buttons}
-              </Stack>
-            </RadioGroup>
-      }
-
+      {liststate === "loading" ? (
+        <Loading />
+      ) : liststate === "error" ? (
+        <ErrorMessage message="" />
+      ) : (
+        <RadioGroup defaultValue={category}>
+          <Stack>
+            <Radio
+              key={0}
+              value={"all"}
+              onChange={() => {
+                dispatch(setCategory("all"));
+              }}
+            >
+              {lang === "en" ? "All" : "Vše"}
+            </Radio>
+            {buttons}
+          </Stack>
+        </RadioGroup>
+      )}
     </>
   );
 };

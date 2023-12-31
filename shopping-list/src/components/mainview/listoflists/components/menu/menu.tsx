@@ -11,7 +11,7 @@ const SEARCH = <FontAwesomeIcon icon={faSearch} />;
 const SHARE = <FontAwesomeIcon icon={faShareNodes} />;
 import { IconButton } from "@chakra-ui/react";
 //Components
-import Delete from "./components/deletemodal";
+import Delete from "../deletemodal";
 
 interface IParmasType {
   id: string;

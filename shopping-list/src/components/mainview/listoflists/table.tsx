@@ -6,6 +6,7 @@ import {
   selectLists,
 } from "../../../features/slices/listSlice";
 import {
+  selectLang,
   selectUser,
   selectUsers,
 } from "../../../features/slices/userSlice";
@@ -32,6 +33,7 @@ const TableOfLists = () => {
   const liststate = useSelector(selectListsState);
   const category = useSelector(selectCategory);
   const lists: any = useSelector(selectLists);
+  const lang = useSelector(selectLang);
 
   const rowsdata: any[] = [];
   Object.keys(lists).forEach(function (key, index) {
@@ -64,28 +66,28 @@ const TableOfLists = () => {
 
   return (
     <>
-      {
-        liststate === "loading" ?
-          <Loading />
-          :
-          liststate === "error" ?
-            <ErrorMessage message="Listy se nepovedlo načíst" />
-            :
-            <TableContainer>
-              <Table variant="simple">
-                <Thead>
-                  <Tr>
-                    <Th>Profile pic</Th>
-                    <Th>name</Th>
-                    <Th className="tag-column">Category</Th>
-                    <Th>actions</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>{rows}</Tbody>
-                <Tfoot></Tfoot>
-              </Table>
-            </TableContainer>
-      }
+      {liststate === "loading" ? (
+        <Loading />
+      ) : liststate === "error" ? (
+        <ErrorMessage message="Listy se nepovedlo načíst" />
+      ) : (
+        <TableContainer>
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>{lang === "en" ? "Profile pic" : "Profilový obr"}</Th>
+                <Th>{lang === "en" ? "Name" : "Název"}</Th>
+                <Th className="tag-column">
+                  {lang === "en" ? "Category" : "Kategorie"}
+                </Th>
+                <Th>{lang === "en" ? "Actions" : "Akce"}</Th>
+              </Tr>
+            </Thead>
+            <Tbody>{rows}</Tbody>
+            <Tfoot></Tfoot>
+          </Table>
+        </TableContainer>
+      )}
     </>
   );
 };

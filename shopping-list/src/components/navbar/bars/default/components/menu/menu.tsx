@@ -51,26 +51,24 @@ const nMenu = () => {
 
   return (
     <>
-      {
-        usersstate === "loading" ?
-          <Loading />
-          :
-          usersstate === "error" ?
-            <ErrorMessage message="" />
-            :
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-              >
-                <Avatar size={"sm"} src={profilepic} />
-              </MenuButton>
-              <MenuList>{menuitems}</MenuList>
-            </Menu>
-      }
+      {usersstate === "loading" ? (
+        <Loading />
+      ) : usersstate === "error" ? (
+        <ErrorMessage message="" />
+      ) : (
+        <Menu>
+          <MenuButton
+            as={Button}
+            rounded={"full"}
+            variant={"link"}
+            cursor={"pointer"}
+            minW={0}
+          >
+            <Avatar size={"sm"} src={profilepic} />
+          </MenuButton>
+          <MenuList>{menuitems}</MenuList>
+        </Menu>
+      )}
     </>
   );
 };

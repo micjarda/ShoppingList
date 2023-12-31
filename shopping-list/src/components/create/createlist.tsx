@@ -1,7 +1,7 @@
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { selectLists, setLists } from "../../features/slices/listSlice";
-import { selectUser } from "../../features/slices/userSlice";
+import { selectUser, selectLang } from "../../features/slices/userSlice";
 // Chakra
 import {
   Modal,
@@ -27,6 +27,7 @@ const CreateList = () => {
   const dispatch = useDispatch();
   const user: any = useSelector(selectUser);
   const lists: any = useSelector(selectLists);
+  const lang = useSelector(selectLang);
   const [nameOfList, setNameOfList] = useState("");
   const [category, setCategory] = useState("");
 
@@ -58,46 +59,53 @@ const CreateList = () => {
   return (
     <>
       <Button colorScheme="teal" size="sm" onClick={onOpen}>
-        {PLUS}Add
+        {PLUS}
+        {lang === "en" ? "Add" : "Přidat"}
       </Button>
-
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create a new list</ModalHeader>
+          <ModalHeader>
+            {lang === "en" ? "Create a new list" : "Vytvořit nový seznam"}
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Stack spacing={3}>
               <Input
                 onChange={(e) => setNameOfList(e.target.value)}
                 variant="flushed"
-                placeholder="Name of list"
+                placeholder={
+                  lang === "en" ? "Name of list" : "Název seznamu"
+                }
               />
               <Input
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 variant="flushed"
-                placeholder="Category"
+                placeholder={lang === "en" ? "Category" : "Kategorie"}
               />
               <Select
-                placeholder="Select existing category"
+                placeholder={
+                  lang === "en"
+                    ? "Select existing category"
+                    : "Vybrat kategorii"
+                }
                 onChange={(e) => setCategory(e.target.value)}
               >
                 {allcategoryes}
               </Select>
             </Stack>
           </ModalBody>
-
           <ModalFooter>
             <Button colorScheme="gray" mr={3} onClick={onClose}>
-              Close
+              {lang === "en" ? "Close" : "Zavřít"}
             </Button>
             <Button
               onClick={createList}
               colorScheme="blue"
               variant="solid"
             >
-              Create
+              {lang === "en" ? "Create" : "Vytvořit"}
             </Button>
           </ModalFooter>
         </ModalContent>

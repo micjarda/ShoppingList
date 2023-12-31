@@ -3,12 +3,14 @@ import { useColorMode, Button, Stack } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 // Komponenty
 import CreateList from "../../../../../create/createlist";
+import Setlang from "../setlang/setlang";
 
 const nButtons = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { colorMode, toggleColorMode } = useColorMode();
   const buttons = [
     [true, <CreateList />],
+    [true, <Setlang />],
     [
       true,
       <Button

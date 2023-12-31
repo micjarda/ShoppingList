@@ -28,11 +28,9 @@ const Mock = ({ children }: any) => {
   }
 
   if (!mockdata) {
-    if (isUserOnError)
-      dispatch(setUsersState("error"));
+    if (isUserOnError) dispatch(setUsersState("error"));
 
-    if (isUserOnLoading)
-      dispatch(setUsersState("loading"))
+    if (isUserOnLoading) dispatch(setUsersState("loading"));
 
     if (!isUserOnError && !isUserOnLoading) {
       if (userData) dispatch(setUsers(listData));
@@ -40,11 +38,9 @@ const Mock = ({ children }: any) => {
   }
 
   if (!mockdata) {
-    if (isListOnError)
-      dispatch(setListState("error"));
+    if (isListOnError) dispatch(setListState("error"));
 
-    if (isListLoading)
-      dispatch(setListState("loading"));
+    if (isListLoading) dispatch(setListState("loading"));
 
     if (!isListOnError && !isListLoading) {
       if (listData) dispatch(setLists(listData));

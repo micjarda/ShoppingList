@@ -21,34 +21,37 @@ import logo from "../../../../assets/logo.jpg";
 // Styly
 import "../../navbar.css";
 // components
-import NButtons from "./components/buttons/buttons";
-import NMenu from "./components/menu/menu";
-
-const Links = [["/", CART, "Home"]];
-
-const NavLink = ({
-  children,
-  href,
-}: {
-  children: ReactNode;
-  href: string;
-}) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={"md"}
-    _hover={{
-      textDecoration: "none",
-      bg: useColorModeValue("gray.200", "gray.700"),
-    }}
-    href={href}
-  >
-    {children}
-  </Link>
-);
+import Buttons from "./components/buttons/buttons";
+import Menu from "./components/menu/menu";
+import { useSelector } from "react-redux";
+import { selectLang } from "../../../../features/slices/userSlice";
 
 const Default = () => {
+  const lang = useSelector(selectLang);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const Links = [["/", CART, lang === "en" ? "Home" : " Domů"]];
+
+  const NavLink = ({
+    children,
+    href,
+  }: {
+    children: ReactNode;
+    href: string;
+  }) => (
+    <Link
+      px={2}
+      py={1}
+      rounded={"md"}
+      _hover={{
+        textDecoration: "none",
+        bg: useColorModeValue("gray.200", "gray.700"),
+      }}
+      href={href}
+    >
+      {children}
+    </Link>
+  );
   return (
     <>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
@@ -82,8 +85,8 @@ const Default = () => {
           </HStack>
         </HStack>
         <Flex alignItems={"center"}>
-          <NButtons />
-          <NMenu />
+          <Buttons />
+          <Menu />
         </Flex>
       </Flex>
 
