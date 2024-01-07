@@ -12,7 +12,7 @@ interface IParmasType {
 const Container: React.FC<IParmasType> = ({ id }) => {
   const lists: any = useSelector(selectLists);
   return (
-    <Stack>
+    <Stack padding={5}>
       {lists[id]?.items.map((item: any) => (
         <CheckBox key={Math.random()} listid={id} item={item} />
       ))}

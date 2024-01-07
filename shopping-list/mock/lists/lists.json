@@ -6,7 +6,8 @@
     "items": [
       ["Jablko", false],
       ["Banány", true],
-      ["Jahody", true]
+      ["Jahody", true],
+      ["Okurky", false]
     ],
     "category": "Výživa",
     "tag": 2
@@ -18,7 +19,11 @@
     "items": [
       ["Boty", false],
       ["Bunda", false],
-      ["Čepice", true]
+      ["Čepice", true],
+      ["Kalhoty", false],
+      ["Svetr", false],
+      ["Rukavice", false],
+      ["Šála", false]
     ],
     "category": "Šatník",
     "tag": 1
@@ -30,7 +35,15 @@
     "items": [
       ["Boty", false],
       ["Bunda", false],
-      ["Čepice", true]
+      ["Čepice", true],
+      ["Vrtačka", false],
+      ["Šroubovák", false],
+      ["Pila", true],
+      ["Box", false],
+      ["Kladivo", false],
+      ["lepidlo", false],
+      ["let lampa", false],
+      ["světlo", false]
     ],
     "category": "Dílna",
     "tag": 1

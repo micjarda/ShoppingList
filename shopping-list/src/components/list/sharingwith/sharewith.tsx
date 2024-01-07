@@ -12,7 +12,7 @@ const Sharewith: React.FC<IParmasType> = ({ profilepics = [] }) => {
     <Avatar key={pic} size="lg" name="Kent Dodds" src={pic} />
   ));
   return (
-    <VStack spacing={4} align="stretch">
+    <VStack margin={5} spacing={4} align="stretch">
       <h2>{lang === "en" ? "Shared with" : "Sdíleno s"}</h2>
       {avatars}
     </VStack>

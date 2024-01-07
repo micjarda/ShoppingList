@@ -7,7 +7,7 @@ interface IListsContext {
   state: "loading" | "error" | "sucsses";
   lists: object;
   selectedCategory: string;
-  currentList: object;
+  currentList: string;
 }
 
 const Lists = createSlice({
@@ -18,10 +18,7 @@ const Lists = createSlice({
       ...ListsFile,
     },
     selectedCategory: "all",
-    currentList: {
-      id: "",
-      hosts: [],
-    },
+    currentList: "001",
     currentUser: "01",
   } as IListsContext,
   reducers: {
